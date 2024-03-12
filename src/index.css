@@ -21,3 +21,11 @@ body {
   margin: 0;
   font-size: 20px;
 }
+
+.counter span:first-child {
+  color: rgb(77, 66, 139);
+}
+
+.counter span:last-child {
+  color: rgb(250, 170, 43);
+}
