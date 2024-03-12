@@ -4,3 +4,6 @@ export const CANVAS_SIZE = SQUARE_SIZE * BOARD_SIZE;
 
 export const FIRST_PLAYER_RGB = "rgb(250, 170, 43)";
 export const SECOND_PLAYER_RGB = "rgb(77, 66, 139)";
+
+export const PLAYER_SPEED_X = 6;
+export const PLAYER_SPEED_Y = 7;
