@@ -1,11 +1,18 @@
 import { BOARD_SIZE } from "../constants";
 
-export const setupPong = (
+interface SetupPongProps {
   setBoard: React.Dispatch<React.SetStateAction<boolean[][]>>,
   setFirstPlayerCount: React.Dispatch<React.SetStateAction<number>>,
   setSecondPlayerCount: React.Dispatch<React.SetStateAction<number>>,
   setIsSetupComplete: React.Dispatch<React.SetStateAction<boolean>>
-) => {
+}
+
+export const setupPong = ({
+  setBoard,
+  setFirstPlayerCount,
+  setSecondPlayerCount,
+  setIsSetupComplete,
+}: SetupPongProps) => {
   const initialBoard = [];
   let firstPlayerCounter = 0;
   let secondPlayerCounter = 0;

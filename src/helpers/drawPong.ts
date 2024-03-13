@@ -3,22 +3,35 @@ import {
   SECOND_PLAYER_RGB,
   SQUARE_SIZE,
 } from "../constants";
-import { moveFirstPlayer, moveSecondPlayer } from "./movePlayers";
+import { movePlayer } from "./movePlayer";
 
-export const drawPong = (
-  board: boolean[][],
-  firstPlayerX: number,
-  firstPlayerY: number,
-  firstPlayerDx: number,
-  firstPlayerDy: number,
-  secondPlayerX: number,
-  secondPlayerY: number,
-  secondPlayerDx: number,
-  secondPlayerDy: number,
-  setBoard: React.Dispatch<React.SetStateAction<boolean[][]>>,
-  setFirstPlayerCount: React.Dispatch<React.SetStateAction<number>>,
-  setSecondPlayerCount: React.Dispatch<React.SetStateAction<number>>
-) => {
+interface DrawPongProps {
+  board: boolean[][];
+  player1: {
+    x: number;
+    y: number;
+    dx: number;
+    dy: number;
+  };
+  player2: {
+    x: number;
+    y: number;
+    dx: number;
+    dy: number;
+  };
+  setBoard: React.Dispatch<React.SetStateAction<boolean[][]>>;
+  setFirstPlayerCount: React.Dispatch<React.SetStateAction<number>>;
+  setSecondPlayerCount: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export const drawPong = ({
+  board,
+  player1,
+  player2,
+  setBoard,
+  setFirstPlayerCount,
+  setSecondPlayerCount,
+}: DrawPongProps) => {
   const canvas = document.getElementById(
     "pong-canvas"
   ) as HTMLCanvasElement | null;
@@ -31,9 +44,7 @@ export const drawPong = (
 
   for (let x = 0; x < board.length; x++) {
     for (let y = 0; y < board[x].length; y++) {
-      ctx.fillStyle = board[x][y]
-        ? FIRST_PLAYER_RGB
-        : SECOND_PLAYER_RGB;
+      ctx.fillStyle = board[x][y] ? FIRST_PLAYER_RGB : SECOND_PLAYER_RGB;
       ctx.fillRect(x * SQUARE_SIZE, y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
       if (board[x][y]) firstPlayerCounter++;
       else secondPlayerCounter++;
@@ -45,51 +56,57 @@ export const drawPong = (
 
   ctx.fillStyle = FIRST_PLAYER_RGB;
   ctx.fillRect(
-    firstPlayerX - SQUARE_SIZE / 2,
-    firstPlayerY - SQUARE_SIZE / 2,
+    player1.x - SQUARE_SIZE / 2,
+    player1.y - SQUARE_SIZE / 2,
     SQUARE_SIZE,
     SQUARE_SIZE
   );
 
   ctx.fillStyle = SECOND_PLAYER_RGB;
   ctx.fillRect(
-    secondPlayerX - SQUARE_SIZE / 2,
-    secondPlayerY - SQUARE_SIZE / 2,
+    player2.x - SQUARE_SIZE / 2,
+    player2.y - SQUARE_SIZE / 2,
     SQUARE_SIZE,
     SQUARE_SIZE
   );
 
-  const newFirstPlayerState = moveFirstPlayer(
-    firstPlayerX,
-    firstPlayerY,
-    firstPlayerDx,
-    firstPlayerDy,
+  const newFirstPlayerState = movePlayer(
+    player1.x,
+    player1.y,
+    player1.dx,
+    player1.dy,
     board,
-    setBoard
+    setBoard,
+    false
   );
-  const newSecondPlayerState = moveSecondPlayer(
-    secondPlayerX,
-    secondPlayerY,
-    secondPlayerDx,
-    secondPlayerDy,
+  const newSecondPlayerState = movePlayer(
+    player2.x,
+    player2.y,
+    player2.dx,
+    player2.dy,
     board,
-    setBoard
+    setBoard,
+    true
   );
 
   requestAnimationFrame(() =>
-    drawPong(
+    drawPong({
       board,
-      newFirstPlayerState.firstPlayerX,
-      newFirstPlayerState.firstPlayerY,
-      newFirstPlayerState.firstPlayerDx,
-      newFirstPlayerState.firstPlayerDy,
-      newSecondPlayerState.secondPlayerX,
-      newSecondPlayerState.secondPlayerY,
-      newSecondPlayerState.secondPlayerDx,
-      newSecondPlayerState.secondPlayerDy,
+      player1: {
+        x: newFirstPlayerState.playerX,
+        y: newFirstPlayerState.playerY,
+        dx: newFirstPlayerState.playerDx,
+        dy: newFirstPlayerState.playerDy,
+      },
+      player2: {
+        x: newSecondPlayerState.playerX,
+        y: newSecondPlayerState.playerY,
+        dx: newSecondPlayerState.playerDx,
+        dy: newSecondPlayerState.playerDy,
+      },
       setBoard,
       setFirstPlayerCount,
-      setSecondPlayerCount
-    )
+      setSecondPlayerCount,
+    })
   );
 };
