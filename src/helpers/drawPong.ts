@@ -1,8 +1,4 @@
-import {
-  FIRST_PLAYER_RGB,
-  SECOND_PLAYER_RGB,
-  SQUARE_SIZE,
-} from "../constants";
+import { FIRST_PLAYER_RGB, SECOND_PLAYER_RGB, SQUARE_SIZE } from "../constants";
 import { movePlayer } from "./movePlayer";
 
 interface DrawPongProps {

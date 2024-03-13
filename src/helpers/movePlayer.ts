@@ -29,15 +29,11 @@ export const movePlayer = (
   const currX = Math.floor(playerX / SQUARE_SIZE);
   const currY = Math.floor(playerY / SQUARE_SIZE);
   const nextX = Math.floor(
-    (playerX +
-      playerDx +
-      (playerDx > 0 ? SQUARE_SIZE / 2 : -SQUARE_SIZE / 2)) /
+    (playerX + playerDx + (playerDx > 0 ? SQUARE_SIZE / 2 : -SQUARE_SIZE / 2)) /
       SQUARE_SIZE
   );
   const nextY = Math.floor(
-    (playerY +
-      playerDy +
-      (playerDy > 0 ? SQUARE_SIZE / 2 : -SQUARE_SIZE / 2)) /
+    (playerY + playerDy + (playerDy > 0 ? SQUARE_SIZE / 2 : -SQUARE_SIZE / 2)) /
       SQUARE_SIZE
   );
 

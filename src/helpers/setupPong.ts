@@ -1,10 +1,10 @@
 import { BOARD_SIZE } from "../constants";
 
 interface SetupPongProps {
-  setBoard: React.Dispatch<React.SetStateAction<boolean[][]>>,
-  setFirstPlayerCount: React.Dispatch<React.SetStateAction<number>>,
-  setSecondPlayerCount: React.Dispatch<React.SetStateAction<number>>,
-  setIsSetupComplete: React.Dispatch<React.SetStateAction<boolean>>
+  setBoard: React.Dispatch<React.SetStateAction<boolean[][]>>;
+  setFirstPlayerCount: React.Dispatch<React.SetStateAction<number>>;
+  setSecondPlayerCount: React.Dispatch<React.SetStateAction<number>>;
+  setIsSetupComplete: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const setupPong = ({

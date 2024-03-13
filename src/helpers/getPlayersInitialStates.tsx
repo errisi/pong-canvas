@@ -1,4 +1,9 @@
-import { BOARD_SIZE, PLAYER_SPEED_X, PLAYER_SPEED_Y, SQUARE_SIZE } from "../constants";
+import {
+  BOARD_SIZE,
+  PLAYER_SPEED_X,
+  PLAYER_SPEED_Y,
+  SQUARE_SIZE,
+} from "../constants";
 
 export const getPlayersInitialStates = () => {
   const firstPlayerX = SQUARE_SIZE / 2;

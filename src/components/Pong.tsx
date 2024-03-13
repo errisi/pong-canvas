@@ -26,7 +26,7 @@ export const Pong = () => {
       setBoard,
       setFirstPlayerCount,
       setSecondPlayerCount,
-      setIsSetupComplete
+      setIsSetupComplete,
     });
   }, []);
 
